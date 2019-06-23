@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -30,6 +31,25 @@ public class FormTesting {
 		
 		driver.findElement(By.id("btnclosepaxoption")).click();
 		System.out.println(driver.findElement(By.id("divpaxinfo")).getText());
+		
+		driver.findElement(By.cssSelector("input[id*='_mainContent_ddl_originStation'")).click();
+		driver.findElement(By.xpath("//*[@id=\'ctl00_mainContent_ddl_originStation1_CTNR\']//*[@value=\'DEL\']")).click();
+		try { Thread.sleep(400l); } catch (InterruptedException e) { e.printStackTrace(); }
+		driver.findElement(By.xpath("//*[@id=\"ctl00_mainContent_ddl_destinationStation1_CTNR\"]//*[@value=\"BOM\"]")).click();
+		
+		
+		// INPUT RADIO - standard radio
+
+		try { Thread.sleep(400l); } catch (InterruptedException e) { e.printStackTrace(); }
+		
+		WebElement student = driver.findElement(By.cssSelector("#ctl00_mainContent_chk_StudentDiscount"));
+		student.click();
+
+		WebElement type = driver.findElement(By.cssSelector("#ctl00_mainContent_rbtnl_Trip_1"));
+		type.click();
+				
+		
+		
 
 //		driver.quit();
 	}
