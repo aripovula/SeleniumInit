@@ -12,8 +12,10 @@ public class FormTestingSuggestiveDropList {
 		WebDriver driver =  new ChromeDriver();
 		driver.get("https://www.makemytrip.com/");
 		
+		FormTestingSuggestiveDropList ins = new FormTestingSuggestiveDropList();
+		
 		driver.findElement(By.id("fromCity")).click();
-		try { Thread.sleep(400l); } catch (InterruptedException e) { e.printStackTrace(); }
+		
 		
 		// USING RELATIVE PATH WITH PARENT
 //		WebElement from = driver.findElement(By.xpath("//*[@id=\'react-autowhatever-1\']/parent::div/input[1]"));
@@ -21,20 +23,28 @@ public class FormTestingSuggestiveDropList {
 		WebElement from = driver.findElement(By.xpath("//*[@placeholder=\'From\']"));
 		from.clear();
 		from.sendKeys("DEL");
-		try { Thread.sleep(400l); } catch (InterruptedException e) { e.printStackTrace(); }
+		ins.timeout();
 		from.sendKeys(Keys.ARROW_DOWN);
 		from.sendKeys(Keys.ENTER);
 		
 //		driver.findElement(By.id("toCity")).click();
-		try { Thread.sleep(400l); } catch (InterruptedException e) { e.printStackTrace(); }
+		ins.timeout();
 //		WebElement toC = driver.findElement(By.xpath("//*[@id=\'react-autowhatever-1\']/parent::div/input[1]"));
 		// USING OTHER ATTRIBUTE - PLACEHOLDER
 		WebElement toC = driver.findElement(By.xpath("//*[@placeholder=\'To\']"));
-		try { Thread.sleep(400l); } catch (InterruptedException e) { e.printStackTrace(); }
+		ins.timeout();
 		toC.clear();
 		toC.sendKeys("BOM");
+		ins.timeout();
 		toC.sendKeys(Keys.ARROW_DOWN);
+		ins.timeout();
 		toC.sendKeys(Keys.ENTER);
+		ins.timeout();
+		WebElement selCity = driver.findElement(By.cssSelector("#toCity")); 
+		String city = selCity.getAttribute("value");
+		System.out.println("city-" + city);
+		if (city.equalsIgnoreCase("Mumbai")) System.out.println("Match");
+		
 
 		
 //		try {
@@ -66,6 +76,10 @@ public class FormTestingSuggestiveDropList {
 		
 
 //		driver.quit();
+	}
+	
+	void timeout() {
+		try { Thread.sleep(400l); } catch (InterruptedException e) { e.printStackTrace(); }
 	}
 
 }
