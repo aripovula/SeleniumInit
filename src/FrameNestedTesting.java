@@ -32,14 +32,7 @@ public class FrameNestedTesting {
 		driver.switchTo().defaultContent();		
 		
 		
-		
-		// wait before quitting browser
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		driver.quit();
+		WaitThreeSecondsAndClose w = new WaitThreeSecondsAndClose();
+		w.WaitAndClose(driver);		
 	}
-
 }

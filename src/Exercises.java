@@ -1,7 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Exercises {
@@ -15,17 +20,40 @@ public class Exercises {
 		
 //		WebElement el1 = driver.findElement(By.cssSelector("iframe[src=\'/resources/demos/droppable/default.html\']"));
 
+		// task 1 - get # of anchorlinks in the document
 		int size = driver.findElements(By.cssSelector("a")).size();
-		System.out.println(size);
+		System.out.println("In document - " + size);
 		
+		// task 2 - get # of anchorlinks in the footer
+		WebElement el1 = driver.findElement(By.id("gf-BIG"));
+		int size2 = el1.findElements(By.tagName("a")).size();
+		System.out.println("In footer - " + size2);
 		
-		// wait before quitting browser
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		// task 3 - get # of anchorlinks in the 1st column of footer
+		WebElement el2 = driver.findElement(By.cssSelector("#gf-BIG > table > tbody > tr > td:nth-child(1) > ul"));
+		int size3 = el2.findElements(By.tagName("a")).size();
+		System.out.println("1st column footer - " + size3);
+
+		// task 4 - click on each link and check if link works
+		
+		List<WebElement> links = el2.findElements(By.tagName("a"));
+		for (int i = 0; i < size3; i++) {
+			links.get(i)
+			.sendKeys(Keys.chord(Keys.COMMAND, Keys.ENTER));
 		}
-		driver.quit();
+
+		Set<String> ids = driver.getWindowHandles();
+		List<String> ids2 = new ArrayList<>(ids);
+		
+		for (int i = 0; i < ids2.size(); i++) {
+			String title = driver.switchTo().window(ids2.get(i)).getTitle();
+			System.out.println(i + "th title - " + title);
+	
+			driver.switchTo().defaultContent();
+		}
+		
+		WaitThreeSecondsAndClose w = new WaitThreeSecondsAndClose();
+		w.WaitAndClose(driver);
 	}
 
 }

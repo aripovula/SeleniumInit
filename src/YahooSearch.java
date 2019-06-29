@@ -17,7 +17,10 @@ public class YahooSearch {
 		driver.get("http://yahoo.com");
 		driver.findElement(By.id("uh-search-box")).sendKeys("soap");
 		driver.findElement(By.id("uh-search-button")).click();
-		driver.quit();
+		
+		WaitThreeSecondsAndClose w = new WaitThreeSecondsAndClose();
+		w.WaitAndClose(driver);
+
 	}
 
 }

@@ -20,5 +20,9 @@ public class HandleJavaAlert {
 		driver.switchTo().alert().accept();
 		// if need to cancel
 		// driver.switchTo().alert().dismiss();
+		
+		WaitThreeSecondsAndClose w = new WaitThreeSecondsAndClose();
+		w.WaitAndClose(driver);
+
 	}
 }

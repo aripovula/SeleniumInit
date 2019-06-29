@@ -32,7 +32,10 @@ public class YahooSearchCustomXpath {
 
 //		driver.findElement(By.linkText("More scores »")).click();
 		
-		driver.quit();
+
+		WaitThreeSecondsAndClose w = new WaitThreeSecondsAndClose();
+		w.WaitAndClose(driver);
+
 	}
 
 }
