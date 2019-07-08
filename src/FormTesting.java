@@ -18,6 +18,7 @@ public class FormTesting {
 		driver.get("https://www.spicejet.com/");
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
 
 		// INPUT RADIO - standard radio
 		// select round trip
